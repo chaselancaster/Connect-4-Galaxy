@@ -67,7 +67,7 @@
 /*----- constants -----*/
 
 // Variable that selects all of the columns
-const column = document.querySelectorAll(".column");
+const columns = document.querySelectorAll(".column");
 const slots = document.querySelectorAll(".slot");
 
 // Column 1 Slots
@@ -162,121 +162,62 @@ const changePlayer = () => {
 };
 
 // Function that checks for 4 in a row vertically
-
 const checkVertical = () => {
-  if (
-    // Col 1
-    (col1Slot1.style.backgroundColor === game.currentPlayer.color &&
-      col1Slot2.style.backgroundColor === game.currentPlayer.color &&
-      col1Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col1Slot4.style.backgroundColor === game.currentPlayer.color) ||
-    (col1Slot2.style.backgroundColor === game.currentPlayer.color &&
-      col1Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col1Slot4.style.backgroundColor === game.currentPlayer.color &&
-      col1Slot5.style.backgroundColor === game.currentPlayer.color) ||
-    (col1Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col1Slot4.style.backgroundColor === game.currentPlayer.color &&
-      col1Slot5.style.backgroundColor === game.currentPlayer.color &&
-      col1Slot6.style.backgroundColor === game.currentPlayer.color) ||
-    // Col 2
-    (col2Slot1.style.backgroundColor === game.currentPlayer.color &&
-      col2Slot2.style.backgroundColor === game.currentPlayer.color &&
-      col2Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col2Slot4.style.backgroundColor === game.currentPlayer.color) ||
-    (col2Slot2.style.backgroundColor === game.currentPlayer.color &&
-      col2Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col2Slot4.style.backgroundColor === game.currentPlayer.color &&
-      col2Slot5.style.backgroundColor === game.currentPlayer.color) ||
-    (col2Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col2Slot4.style.backgroundColor === game.currentPlayer.color &&
-      col2Slot5.style.backgroundColor === game.currentPlayer.color &&
-      col2Slot6.style.backgroundColor === game.currentPlayer.color) ||
-    // Col 3
-    (col3Slot1.style.backgroundColor === game.currentPlayer.color &&
-      col3Slot2.style.backgroundColor === game.currentPlayer.color &&
-      col3Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col3Slot4.style.backgroundColor === game.currentPlayer.color) ||
-    (col3Slot2.style.backgroundColor === game.currentPlayer.color &&
-      col3Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col3Slot4.style.backgroundColor === game.currentPlayer.color &&
-      col3Slot5.style.backgroundColor === game.currentPlayer.color) ||
-    (col3Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col3Slot4.style.backgroundColor === game.currentPlayer.color &&
-      col3Slot5.style.backgroundColor === game.currentPlayer.color &&
-      col3Slot6.style.backgroundColor === game.currentPlayer.color) ||
-    // Col 4
-    (col4Slot1.style.backgroundColor === game.currentPlayer.color &&
-      col4Slot2.style.backgroundColor === game.currentPlayer.color &&
-      col4Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col4Slot4.style.backgroundColor === game.currentPlayer.color) ||
-    (col4Slot2.style.backgroundColor === game.currentPlayer.color &&
-      col4Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col4Slot4.style.backgroundColor === game.currentPlayer.color &&
-      col4Slot5.style.backgroundColor === game.currentPlayer.color) ||
-    (col4Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col4Slot4.style.backgroundColor === game.currentPlayer.color &&
-      col4Slot5.style.backgroundColor === game.currentPlayer.color &&
-      col4Slot6.style.backgroundColor === game.currentPlayer.color) ||
-    // Col 5
-    (col5Slot1.style.backgroundColor === game.currentPlayer.color &&
-      col5Slot2.style.backgroundColor === game.currentPlayer.color &&
-      col5Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col5Slot4.style.backgroundColor === game.currentPlayer.color) ||
-    (col5Slot2.style.backgroundColor === game.currentPlayer.color &&
-      col5Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col5Slot4.style.backgroundColor === game.currentPlayer.color &&
-      col5Slot5.style.backgroundColor === game.currentPlayer.color) ||
-    (col5Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col5Slot4.style.backgroundColor === game.currentPlayer.color &&
-      col5Slot5.style.backgroundColor === game.currentPlayer.color &&
-      col5Slot6.style.backgroundColor === game.currentPlayer.color) ||
-    // Col 6
-    (col6Slot1.style.backgroundColor === game.currentPlayer.color &&
-      col6Slot2.style.backgroundColor === game.currentPlayer.color &&
-      col6Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col6Slot4.style.backgroundColor === game.currentPlayer.color) ||
-    (col6Slot2.style.backgroundColor === game.currentPlayer.color &&
-      col6Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col6Slot4.style.backgroundColor === game.currentPlayer.color &&
-      col6Slot5.style.backgroundColor === game.currentPlayer.color) ||
-    (col6Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col6Slot4.style.backgroundColor === game.currentPlayer.color &&
-      col6Slot5.style.backgroundColor === game.currentPlayer.color &&
-      col6Slot6.style.backgroundColor === game.currentPlayer.color) ||
-    // Col 7
-    (col7Slot1.style.backgroundColor === game.currentPlayer.color &&
-      col7Slot2.style.backgroundColor === game.currentPlayer.color &&
-      col7Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col7Slot4.style.backgroundColor === game.currentPlayer.color) ||
-    (col7Slot2.style.backgroundColor === game.currentPlayer.color &&
-      col7Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col7Slot4.style.backgroundColor === game.currentPlayer.color &&
-      col7Slot5.style.backgroundColor === game.currentPlayer.color) ||
-    (col7Slot3.style.backgroundColor === game.currentPlayer.color &&
-      col7Slot4.style.backgroundColor === game.currentPlayer.color &&
-      col7Slot5.style.backgroundColor === game.currentPlayer.color &&
-      col7Slot6.style.backgroundColor === game.currentPlayer.color)
-  ) {
-    console.log(`${game.currentPlayer} wins!`);
+  let count = 0;
+  for (let i = 0; i < columns.length; i++) {
+    let currentSlots = columns[i].children;
+    for (let j = 0; j < currentSlots.length; j++) {
+      if (currentSlots[j].style.backgroundColor === game.currentPlayer.color) {
+        count++;
+      } else {
+        count = 0;
+      }
+      if (count >= 4) {
+        count = 0;
+        console.log(`${game.currentPlayer.name} wins!`);
+      }
+    }
+  }
+};
+
+// I want to check each column and compare the child colors in the same index to
+// each other to see if they have the same background color.
+
+const checkHorizontal = () => {
+  let count = 0;
+  for (let i = 0; i < 6; i++) {
+    count = 0;
+    for (let j = 0; j < 7; j++) {
+      if (
+        columns[j].children[i].style.backgroundColor ===
+        game.currentPlayer.color
+      ) {
+        count++;
+      } else {
+        count = 0;
+      }
+      if (count === 4) {
+        console.log(`${game.currentPlayer.name} wins!`);
+      }
+    }
   }
 };
 
 // For loop that checks if the bottom slot is filled or not based on color
-for (let i = 0; i < column.length; i++) {
-  column[i].addEventListener("click", e => {
-    let currentSlots = column[i].children;
+// then calls the checks.
+for (let i = 0; i < columns.length; i++) {
+  columns[i].addEventListener("click", e => {
+    let currentSlots = columns[i].children;
     for (let j = currentSlots.length - 1; j >= 0; j--) {
       if (currentSlots[j].style.backgroundColor === "") {
         currentSlots[j].style.backgroundColor = game.currentPlayer.color;
         checkVertical();
+        checkHorizontal();
         changePlayer();
         return;
       }
-      // console.log("innerloop");
     }
-    // console.log("outside of loop");
   });
-  // console.log("outerloop");
 }
 
 createCurrentPlayer();
