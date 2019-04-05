@@ -64,14 +64,59 @@
 // A modal will be used to display who the winner is and if they want to go home, or
 // play another game.
 
+/*----- constants -----*/
+
 // Variable that selects all of the columns
 const column = document.querySelectorAll(".column");
-console.log(column);
+const slots = document.querySelectorAll(".slot");
 
-// For loop that adds an event listener to each column
+// Game Object
+const game = {
+  currentPlayer: {},
+  players: {
+    p1: {
+      name: "",
+      planet: "",
+      wins: 0,
+      color: "red"
+    },
+    p2: {
+      name: "",
+      planet: "",
+      wins: 0,
+      color: "blue"
+    }
+  }
+};
+
+const createCurrentPlayer = () => {
+  game.currentPlayer = game.players.p1;
+};
+
+// Changing players
+const changePlayer = () => {
+  if (game.currentPlayer === game.players.p1) {
+    game.currentPlayer = game.players.p2;
+  } else if (game.currentPlayer === game.players.p2) {
+    game.currentPlayer = game.players.p1;
+  }
+};
+
+// For loop that checks if the bottom slot is filled or not based on color
 for (let i = 0; i < column.length; i++) {
   column[i].addEventListener("click", e => {
-    console.log(column[i].children);
-    console.log(e.target); // e.target see's which div was clicked
+    let currentSlots = column[i].children;
+    for (let j = currentSlots.length - 1; j >= 0; j--) {
+      if (currentSlots[j].style.backgroundColor === "") {
+        currentSlots[j].style.backgroundColor = game.currentPlayer.color;
+        changePlayer();
+        return;
+      }
+      console.log("innerloop");
+    }
+    console.log("outside of loop");
   });
+  console.log("outerloop");
 }
+
+createCurrentPlayer();
