@@ -11,19 +11,72 @@
   </head>
   <body>
     <h1>Galaxy 4</h1>
+    <h2>The Connect 4 game you know and love...in SPACE!</h2>
+
+    <form>
+      <div class="player-info-column">
+        <input
+          type="text"
+          name="p1name"
+          placeholder="Player 1 Name"
+          class="player-names p1-name"
+        />
+        <label class="container">
+          <h3>Choose Your Disc!</h3>
+          <img src="./img/planet-earth.png" class="p1-earth" />
+        </label>
+
+        <label class="container">
+          <img src="./img/moon.png" class="p1-moon" />
+        </label>
+
+        <label class="container">
+          <img src="./img/mars.png" class="p1-mars" />
+        </label>
+
+        <label class="container">
+          <img src="./img/neptune.png" class="p1-neptune" />
+        </label>
+      </div>
+      <div class="player-info-column">
+        <input type="submit" value="Play!" class="play-btn" />
+      </div>
+      <div class="player-info-column">
+        <input
+          type="text"
+          name="p2name"
+          placeholder="Player 2 Name"
+          class="player-names p2-name"
+        />
+        <label class="container">
+          <h3>Choose Your Disc!</h3>
+          <img src="./img/planet-earth.png" class="p2-earth" />
+        </label>
+
+        <label class="container">
+          <img src="./img/moon.png" class="p2-moon" />
+        </label>
+
+        <label class="container">
+          <img src="./img/mars.png" class="p2-mars" />
+        </label>
+
+        <label class="container">
+          <img src="./img/neptune.png" class="p2-neptune" />
+        </label>
+      </div>
+    </form>
+
     <div class="player-info">
       <button class="btn go-home">Go Home</button>
       <div class="current-player">
         <h2>Current Player</h2>
-        <h3>Name</h3>
-        <div class="current-player-img"></div>
       </div>
       <button class="btn reset-game">Reset</button>
     </div>
     <div class="game-container">
       <div class="player1">
         <h2>Player 1</h2>
-        <h3>Name</h3>
         <h4>Wins:</h4>
       </div>
       <div class="col-1 column">
