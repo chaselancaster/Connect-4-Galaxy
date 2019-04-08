@@ -17,7 +17,7 @@ h1 {
 .player-info {
   color: white;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   font-family: "Righteous", cursive;
   letter-spacing: 3px;
   align-items: center;
@@ -25,10 +25,12 @@ h1 {
 
 .player1 {
   border: 1px solid white;
+  font-family: "Righteous", cursive;
   border-radius: 10px;
   margin: 10px;
   flex-basis: 15%;
   padding: 5px;
+  color: white;
 }
 
 .player1 > h2 {
@@ -40,10 +42,12 @@ h1 {
 
 .player2 {
   border: 1px solid white;
+  font-family: "Righteous", cursive;
   border-radius: 10px;
   margin: 10px;
   flex-basis: 15%;
   padding: 5px;
+  color: white;
 }
 
 .player2 > h2 {
@@ -58,6 +62,7 @@ h1 {
   margin: 10px;
   padding: 30px;
   font-family: "Righteous", cursive;
+  font-size: 12px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
@@ -98,11 +103,11 @@ h1 {
   justify-items: center;
   justify-content: center;
   margin: 0 auto;
-  width: 120px;
+  width: 1280px;
 }
 
 .column {
-  border: 1px solid white;
+  /* border: 1px solid white; */
   height: 600px;
   width: 120px;
   background: transparent;
@@ -116,13 +121,18 @@ h1 {
   border-radius: 50%;
   margin: 25px;
   border: 5px solid white;
+  /* background: url("../img/planet-earth.png"); */
+  background-size: cover;
 }
 
 .current-player {
   display: flex;
+  flex-direction: column;
   border: 1px solid white;
-  /* margin-left: 10px; */
   color: white;
   justify-content: center;
   align-items: center;
+  width: 400px;
+  margin: auto;
+  margin-top: 10px;
 }

@@ -135,16 +135,20 @@ const game = {
       name: "",
       planet: "",
       wins: 0,
-      color: "red"
+      color: "red",
+      url: ""
     },
     p2: {
       name: "",
       planet: "",
       wins: 0,
-      color: "blue"
+      color: "blue",
+      url: ""
     }
   }
 };
+
+/*----- button event listeners -----*/
 
 /*----- functions -----*/
 
@@ -264,6 +268,7 @@ for (let i = 0; i < columns.length; i++) {
     for (let j = currentSlots.length - 1; j >= 0; j--) {
       if (currentSlots[j].style.backgroundColor === "") {
         currentSlots[j].style.backgroundColor = game.currentPlayer.color;
+
         checkVertical();
         checkHorizontal();
         checkDiagonal();
