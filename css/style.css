@@ -1,26 +1,84 @@
+body {
+  background-image: url(../img/star-background.jpg);
+  background-size: cover;
+}
+
 h1 {
   text-align: center;
+  /* color: white; */
+  font-family: "Righteous", cursive;
+  letter-spacing: 3px;
+  font-size: 60px;
+  background: -webkit-linear-gradient(#ff00cc, #333399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.player-info {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Righteous", cursive;
+  letter-spacing: 3px;
+  align-items: center;
+}
+
+.player1 {
+  border: 1px solid white;
+  margin: 10px;
+  flex-basis: 15%;
+  padding: 5px;
+}
+
+.player1 > h2 {
+  background: -webkit-linear-gradient(#ff00cc, #333399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 35px;
+}
+
+.player2 {
+  border: 1px solid white;
+  margin: 10px;
+  flex-basis: 15%;
+  padding: 5px;
+}
+
+.player2 > h2 {
+  background: -webkit-linear-gradient(#ff00cc, #333399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 35px;
 }
 
 .game-container {
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
+  border: 1px solid white;
   align-items: center;
   justify-items: center;
   justify-content: center;
+  margin: 10px;
 }
 
 .column {
-  border: 1px solid black;
-  height: 600px;
+  border: 1px solid white;
+  height: 650px;
   width: 120px;
+  background: transparent;
 }
 
 .slot {
   width: 70px;
   height: 70px;
-  background: black;
+  background: transparent;
   border-radius: 50%;
   margin: 25px;
+  border: 5px solid purple;
+}
+
+.current-player {
+  border: 1px solid white;
+  /* margin-left: 10px; */
+  color: white;
 }

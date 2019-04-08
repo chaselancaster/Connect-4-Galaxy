@@ -180,9 +180,6 @@ const checkVertical = () => {
   }
 };
 
-// I want to check each column and compare the child colors in the same index to
-// each other to see if they have the same background color.
-
 const checkHorizontal = () => {
   let count = 0;
   for (let i = 0; i < 6; i++) {
@@ -203,6 +200,62 @@ const checkHorizontal = () => {
   }
 };
 
+// I want to check each column and compare the child colors in the same index to
+// each other to see if they have the same background color.
+// I want to move both horizontally and vertically at the same time
+
+const checkDiagonal = () => {
+  // used to break out of outer for-loop
+  let diagonal = 0;
+  // loop that loops through top 3 rows
+  for (let i = 0; i < 3; i++) {
+    // loop that loops through each column
+    for (let j = 0; j < 7; j++) {
+      let count = 0;
+      // check if color matches current player
+      if (
+        columns[j].children[i].style.backgroundColor ===
+        game.currentPlayer.color
+      ) {
+        // checking for \ diagonal
+        if (j < 4) {
+          for (let m = 0; m < 4; m++) {
+            // Setting m to be the number that will incriment
+            if (
+              columns[j + m].children[i + m].style.backgroundColor ===
+              game.currentPlayer.color
+            ) {
+              count++;
+            }
+          }
+        }
+
+        // checking for / diagonal
+        if (j >= 3 && count != 4) {
+          // Also checking if count does not equal 4
+          count = 0; // Resetting count from previous diagonal check
+          for (let m = 0; m < 4; m++) {
+            if (
+              columns[j - m].children[i + m].style.backgroundColor === // incrementing i to follow diagonal from top to bottom, right to left
+              game.currentPlayer.color
+            ) {
+              count++;
+            }
+          }
+        }
+
+        if (count == 4) {
+          diagonal = 1;
+          console.log(`${game.currentPlayer.name} wins!`);
+          break; // breaks out of inner for loop
+        }
+      }
+    } // end of inner for loop
+    if (diagonal === 1) {
+      break;
+    }
+  } // end of outer for loop
+};
 // For loop that checks if the bottom slot is filled or not based on color
 // then calls the checks.
 for (let i = 0; i < columns.length; i++) {
@@ -213,6 +266,7 @@ for (let i = 0; i < columns.length; i++) {
         currentSlots[j].style.backgroundColor = game.currentPlayer.color;
         checkVertical();
         checkHorizontal();
+        checkDiagonal();
         changePlayer();
         return;
       }
