@@ -133,14 +133,14 @@ const game = {
   players: {
     p1: {
       name: "",
-      planet: "",
+      disc: "",
       wins: 0,
       color: "red",
       url: ""
     },
     p2: {
       name: "",
-      planet: "",
+      disc: "",
       wins: 0,
       color: "blue",
       url: ""
@@ -149,6 +149,27 @@ const game = {
 };
 
 /*----- button event listeners -----*/
+// Listening for click on play and then inputting names into the player object
+document.querySelector(".play-btn").addEventListener("click", e => {
+  console.log("play button clicked");
+  event.preventDefault();
+  let p1Name = document.querySelector(".p1-name").value;
+  let p2Name = document.querySelector(".p2-name").value;
+  game.players.p1.name = p1Name;
+  game.players.p2.name = p2Name;
+});
+
+// Event listeners for the disc buttons
+document.querySelector(".p1-earth").addEventListener("click", e => {
+  let p1Earth = document.querySelector(".p1-earth");
+  p1Earth.style.border = "1px solid white";
+  game.players.p1.disc = "Earth";
+});
+document.querySelector(".p1-moon").addEventListener("click", e => {
+  let p1Earth = document.querySelector(".p1-moon");
+  p1Earth.style.border = "1px solid white";
+  game.players.p1.disc = "Moon";
+});
 
 /*----- functions -----*/
 

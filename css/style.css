@@ -41,7 +41,7 @@ form {
 input {
   cursor: pointer;
   border: 1px solid white;
-  background:rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.5);
   color: white;
   height: 80px;
   width: 200px;
@@ -54,7 +54,7 @@ input {
 .play-btn {
   cursor: pointer;
   border: 1px solid white;
-  background:rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 20px #eee;
   color: white;
   height: 80px;
