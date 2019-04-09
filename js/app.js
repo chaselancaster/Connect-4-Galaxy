@@ -64,20 +64,6 @@
 // A modal will be used to display who the winner is and if they want to go home, or
 // play another game.
 
-/*----- constants -----*/
-
-// Variable that selects all of the columns
-const columns = document.querySelectorAll(".column");
-const slots = document.querySelectorAll(".slot");
-let p1Name = document.querySelector(".p1-name").value;
-let p2Name = document.querySelector(".p2-name").value;
-let playerInfo = document.querySelector(".player-info");
-let currentPlayerInfo = document.querySelector(".current-player");
-let gameContainer = document.querySelector(".game-container");
-let form = document.querySelector(".form");
-let playerOne = document.querySelector(".h3-grab-1");
-let playerTwo = document.querySelector(".h3-grab-2");
-
 // Game Object
 const game = {
   currentPlayer: {},
@@ -99,7 +85,41 @@ const game = {
   }
 };
 
+/*----- constants -----*/
+
+// Variable that selects all of the columns
+const columns = document.querySelectorAll(".column");
+const slots = document.querySelectorAll(".slot");
+let p1Name = document.querySelector(".p1-name").value;
+let p2Name = document.querySelector(".p2-name").value;
+let playerInfo = document.querySelector(".player-info");
+let currentPlayerInfo = document.querySelector(".current-player");
+let gameContainer = document.querySelector(".game-container");
+let form = document.querySelector(".form");
+let playerOne = document.querySelector(".h3-grab-1");
+let playerTwo = document.querySelector(".h3-grab-2");
+let p1Wins = game.players.p1.wins;
+let p2Wins = game.players.p2.wins;
+
 /*----- button event listeners -----*/
+
+// Event listerner that will listen for the home button click and hide display of
+// game board
+// This will also reset the player names, wins, and discs
+
+// document.querySelector(".go-home").addEventListener("click", e => {
+//   form.style.display = "flex";
+//   playerInfo.style.display = "none";
+//   currentPlayerInfo.style.display = "none";
+//   gameContainer.style.display = "none";
+//   game.players.p1.name = "";
+//   game.players.p1.wins = 0;
+//   game.players.p1.disc = "";
+//   game.players.p2.name = "";
+//   game.players.p2.wins = 0;
+//   game.players.p2.disc = "";
+// });
+
 // Listening for click on play and then inputting names into the player object
 document.querySelector(".play-btn").addEventListener("click", e => {
   console.log("play button clicked");
@@ -110,6 +130,7 @@ document.querySelector(".play-btn").addEventListener("click", e => {
   currentPlayerInfo.style.display = "flex";
   gameContainer.style.display = "flex";
   form.style.display = "none";
+  playerOne.innerText = p1Name;
 });
 
 // Event listeners for the Player 1 disc buttons
@@ -162,23 +183,6 @@ document.querySelector(".p2-neptune").addEventListener("click", e => {
   p2Neptune.style.border = "1px solid white";
   game.players.p2.disc = "Neptune";
   game.players.p2.url = "./img/neptune.png";
-});
-
-// Event listerner that will listen for the home button click and hide display of
-// game board
-// This will also reset the player names, wins, and discs
-
-document.querySelector(".go-home").addEventListener("click", e => {
-  form.style.display = "flex";
-  playerInfo.style.display = "none";
-  currentPlayerInfo.style.display = "none";
-  gameContainer.style.display = "none";
-  game.players.p1.name = "";
-  game.players.p1.wins = 0;
-  game.players.p1.disc = "";
-  game.players.p2.name = "";
-  game.players.p2.wins = 0;
-  game.players.p2.disc = "";
 });
 
 /*----- functions -----*/
@@ -281,6 +285,7 @@ const checkDiagonal = () => {
 
         if (count == 4) {
           diagonal = 1;
+          game.currentPlayer.wins += 1;
           console.log(`${game.currentPlayer.name} wins!`);
           break; // breaks out of inner for loop
         }
