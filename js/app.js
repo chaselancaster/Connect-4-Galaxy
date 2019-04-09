@@ -120,6 +120,7 @@ document.querySelector(".go-home").addEventListener("click", e => {
   game.players.p2.name = "";
   game.players.p2.wins = 0;
   game.players.p2.disc = "";
+  window.location.reload();
 });
 
 // Listening for click on play and then inputting names into the player object
@@ -136,6 +137,8 @@ document.querySelector(".play-btn").addEventListener("click", e => {
   playerOne.innerText = `Name: ${p1Name.value}`;
   playerTwo.innerText = `Name: ${p2Name.value}`;
   currentPlayerName.innerText = name;
+  game.players.p1.wins = 0;
+  game.players.p2.wins = 0;
 });
 
 // Listening for click on reset button and then clearning the background and count
@@ -146,6 +149,12 @@ document.querySelector(".reset-game").addEventListener("click", e => {
     allSlots[i].style.backgroundColor = "";
     allSlots[i].style.backgroundImage = "";
   }
+  for (let i = 0; i < columns.length; i++) {
+    columns[i].style.opacity = "";
+  }
+  createCurrentPlayer();
+  currentPlayerHeader.innerText = "Current Player";
+  currentPlayerName.innerText = game.currentPlayer.name;
   // console.log("reset button clicked");
   // allSlots.style.backgroundColor = "";
   // allSlots.style.backgroundImage = "";
