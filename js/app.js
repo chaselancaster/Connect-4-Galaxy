@@ -222,7 +222,10 @@ const updateWins = () => {
 
 const declareWinner = () => {
   currentPlayerHeader.innerText = "Winner!";
-  columns.style.opacity = "0.5";
+  for (let i = 0; i < columns.length; i++) {
+    columns[i].style.opacity = "0.2";
+  }
+  game.currentPlayer = "null";
 };
 
 // Changing players
