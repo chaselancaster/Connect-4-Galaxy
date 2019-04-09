@@ -217,6 +217,5 @@ img {
   border-radius: 50%;
   margin: 25px;
   border: 5px solid white;
-  /* background: url("../img/planet-earth.png"); */
   background-size: cover;
 }

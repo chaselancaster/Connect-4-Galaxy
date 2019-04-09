@@ -115,24 +115,25 @@ document.querySelector(".p1-earth").addEventListener("click", e => {
   let p1Earth = document.querySelector(".p1-earth");
   p1Earth.style.border = "1px solid white";
   game.players.p1.disc = "Earth";
-  game.players.p1.url = "../img/planet-earth.png";
+  game.players.p1.url = "./img/planet-earth.png";
 });
 document.querySelector(".p1-moon").addEventListener("click", e => {
   let p1Moon = document.querySelector(".p1-moon");
   p1Moon.style.border = "1px solid white";
   game.players.p1.disc = "Moon";
-  game.players.p1.url = "../img/moon.png";
+  game.players.p1.url = "./img/moon.png";
 });
 document.querySelector(".p1-mars").addEventListener("click", e => {
   let p1Mars = document.querySelector(".p1-mars");
   p1Mars.style.border = "1px solid white";
   game.players.p1.disc = "Mars";
-  game.players.p1.url = "../img/mars.png";
+  game.players.p1.url = "./img/mars.png";
 });
 document.querySelector(".p1-neptune").addEventListener("click", e => {
   let p1Neptune = document.querySelector(".p1-neptune");
   p1Neptune.style.border = "1px solid white";
   game.players.p1.disc = "Neptune";
+  game.players.p1.disc = "./img/neptune.png";
 });
 
 // Event listeners for the Player 2 disc buttons
@@ -140,25 +141,25 @@ document.querySelector(".p2-earth").addEventListener("click", e => {
   let p2Earth = document.querySelector(".p2-earth");
   p2Earth.style.border = "1px solid white";
   game.players.p2.disc = "Earth";
-  game.players.p2.url = "../img/planet-earth.png";
+  game.players.p2.url = "./img/planet-earth.png";
 });
 document.querySelector(".p2-moon").addEventListener("click", e => {
   let p2Moon = document.querySelector(".p2-moon");
   p2Moon.style.border = "1px solid white";
   game.players.p2.disc = "Moon";
-  game.players.p2.url = "../img/moon.png";
+  game.players.p2.url = "./img/moon.png";
 });
 document.querySelector(".p2-mars").addEventListener("click", e => {
   let p2Mars = document.querySelector(".p2-mars");
   p2Mars.style.border = "1px solid white";
   game.players.p2.disc = "Mars";
-  game.players.p2.url = "../img/mars.png";
+  game.players.p2.url = "./img/mars.png";
 });
 document.querySelector(".p2-neptune").addEventListener("click", e => {
   let p2Neptune = document.querySelector(".p2-neptune");
   p2Neptune.style.border = "1px solid white";
   game.players.p2.disc = "Neptune";
-  game.players.p2.url = "../img/neptune.png";
+  game.players.p2.url = "./img/neptune.png";
 });
 
 // Event listerner that will listen for the home button click and hide display of
@@ -295,8 +296,9 @@ for (let i = 0; i < columns.length; i++) {
   columns[i].addEventListener("click", e => {
     let currentSlots = columns[i].children;
     for (let j = currentSlots.length - 1; j >= 0; j--) {
-      if (currentSlots[j].style.backgroundColor === "") {
-        currentSlots[j].style.backgroundColor = game.currentPlayer.color;
+      if (currentSlots[j].style.backgroundImage === "") {
+        currentSlots[j].style.backgroundImage =
+          "url(" + game.currentPlayer.url + ")";
 
         checkVertical();
         checkHorizontal();
