@@ -69,6 +69,12 @@
 // Variable that selects all of the columns
 const columns = document.querySelectorAll(".column");
 const slots = document.querySelectorAll(".slot");
+let p1Name = document.querySelector(".p1-name").value;
+let p2Name = document.querySelector(".p2-name").value;
+let playerInfo = document.querySelector(".player-info");
+let currentPlayerInfo = document.querySelector(".current-player");
+let gameContainer = document.querySelector(".game-container");
+let form = document.querySelector(".form");
 
 // Game Object
 const game = {
@@ -96,16 +102,12 @@ const game = {
 document.querySelector(".play-btn").addEventListener("click", e => {
   console.log("play button clicked");
   event.preventDefault();
-  let p1Name = document.querySelector(".p1-name").value;
-  let p2Name = document.querySelector(".p2-name").value;
-  let playerInfo = document.querySelector(".player-info");
-  let currentPlayerInfo = document.querySelector(".current-player");
-  let gameContainer = document.querySelector(".game-container");
   game.players.p1.name = p1Name; // Adding P1 name to game object
   game.players.p2.name = p2Name; // Adding P2 name to game object
   playerInfo.style.display = "flex";
   currentPlayerInfo.style.display = "flex";
   gameContainer.style.display = "flex";
+  form.style.display = "none";
 });
 
 // Event listeners for the Player 1 disc buttons
@@ -113,16 +115,19 @@ document.querySelector(".p1-earth").addEventListener("click", e => {
   let p1Earth = document.querySelector(".p1-earth");
   p1Earth.style.border = "1px solid white";
   game.players.p1.disc = "Earth";
+  game.players.p1.url = "../img/planet-earth.png";
 });
 document.querySelector(".p1-moon").addEventListener("click", e => {
   let p1Moon = document.querySelector(".p1-moon");
   p1Moon.style.border = "1px solid white";
   game.players.p1.disc = "Moon";
+  game.players.p1.url = "../img/moon.png";
 });
 document.querySelector(".p1-mars").addEventListener("click", e => {
   let p1Mars = document.querySelector(".p1-mars");
   p1Mars.style.border = "1px solid white";
   game.players.p1.disc = "Mars";
+  game.players.p1.url = "../img/mars.png";
 });
 document.querySelector(".p1-neptune").addEventListener("click", e => {
   let p1Neptune = document.querySelector(".p1-neptune");
@@ -135,21 +140,42 @@ document.querySelector(".p2-earth").addEventListener("click", e => {
   let p2Earth = document.querySelector(".p2-earth");
   p2Earth.style.border = "1px solid white";
   game.players.p2.disc = "Earth";
+  game.players.p2.url = "../img/planet-earth.png";
 });
 document.querySelector(".p2-moon").addEventListener("click", e => {
   let p2Moon = document.querySelector(".p2-moon");
   p2Moon.style.border = "1px solid white";
   game.players.p2.disc = "Moon";
+  game.players.p2.url = "../img/moon.png";
 });
 document.querySelector(".p2-mars").addEventListener("click", e => {
   let p2Mars = document.querySelector(".p2-mars");
   p2Mars.style.border = "1px solid white";
   game.players.p2.disc = "Mars";
+  game.players.p2.url = "../img/mars.png";
 });
 document.querySelector(".p2-neptune").addEventListener("click", e => {
   let p2Neptune = document.querySelector(".p2-neptune");
   p2Neptune.style.border = "1px solid white";
   game.players.p2.disc = "Neptune";
+  game.players.p2.url = "../img/neptune.png";
+});
+
+// Event listerner that will listen for the home button click and hide display of
+// game board
+// This will also reset the player names, wins, and discs
+
+document.querySelector(".go-home").addEventListener("click", e => {
+  form.style.display = "flex";
+  playerInfo.style.display = "none";
+  currentPlayerInfo.style.display = "none";
+  gameContainer.style.display = "none";
+  game.players.p1.name = "";
+  game.players.p1.wins = 0;
+  game.players.p1.disc = "";
+  game.players.p2.name = "";
+  game.players.p2.wins = 0;
+  game.players.p2.disc = "";
 });
 
 /*----- functions -----*/
@@ -262,6 +288,7 @@ const checkDiagonal = () => {
     }
   } // end of outer for loop
 };
+
 // For loop that checks if the bottom slot is filled or not based on color
 // then calls the checks.
 for (let i = 0; i < columns.length; i++) {
