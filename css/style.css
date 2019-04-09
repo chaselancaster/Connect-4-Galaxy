@@ -5,7 +5,6 @@ body {
 
 h1 {
   text-align: center;
-  /* color: white; */
   font-family: "Righteous", cursive;
   letter-spacing: 3px;
   font-size: 80px;
@@ -16,7 +15,6 @@ h1 {
 
 h2 {
   text-align: center;
-  /* color: white; */
   font-family: "Righteous", cursive;
   letter-spacing: 3px;
   font-size: 30px;
@@ -26,16 +24,13 @@ h2 {
 form {
   display: flex;
   justify-content: space-around;
-  /* border: 1px solid white; */
   margin: 0 auto;
   color: white;
   font-family: "Righteous", cursive;
 }
 
-.player-info-column {
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* flex: 1; */
+form h3 {
+  letter-spacing: 2px;
 }
 
 input {
@@ -64,7 +59,7 @@ input {
   letter-spacing: 2px;
 }
 
-.player-names {
+.player-boxes {
   box-shadow: 0 0 20px #eee;
 }
 
@@ -80,12 +75,6 @@ img {
   height: 50px;
   cursor: pointer;
 }
-
-/* .play-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 
 .player-info {
   display: none;
@@ -194,7 +183,6 @@ img {
 .game-container {
   display: none;
   flex-direction: row;
-  /* border: 1px solid white; */
   align-items: center;
   justify-items: center;
   justify-content: center;
@@ -203,7 +191,6 @@ img {
 }
 
 .column {
-  /* border: 1px solid white; */
   height: 600px;
   width: 120px;
   background: transparent;

@@ -89,9 +89,9 @@ const game = {
 
 // Variable that selects all of the columns
 const columns = document.querySelectorAll(".column");
-const slots = document.querySelectorAll(".slot");
-let p1Name = document.querySelector(".p1-name").value;
-let p2Name = document.querySelector(".p2-name").value;
+let slots = document.querySelectorAll(".slot");
+let p1Name = document.querySelector(".name1");
+let p2Name = document.querySelector(".name2");
 let playerInfo = document.querySelector(".player-info");
 let currentPlayerInfo = document.querySelector(".current-player");
 let gameContainer = document.querySelector(".game-container");
@@ -100,6 +100,8 @@ let playerOne = document.querySelector(".h3-grab-1");
 let playerTwo = document.querySelector(".h3-grab-2");
 let p1Wins = game.players.p1.wins;
 let p2Wins = game.players.p2.wins;
+let currentPlayerName = document.querySelector(".current-player-name");
+let currentPlayerHeader = document.querySelector(".current-player-header");
 
 /*----- button event listeners -----*/
 
@@ -122,15 +124,26 @@ let p2Wins = game.players.p2.wins;
 
 // Listening for click on play and then inputting names into the player object
 document.querySelector(".play-btn").addEventListener("click", e => {
+  let name = game.currentPlayer.name;
   console.log("play button clicked");
   event.preventDefault();
-  game.players.p1.name = p1Name; // Adding P1 name to game object
-  game.players.p2.name = p2Name; // Adding P2 name to game object
+  game.players.p1.name = p1Name.value; // Adding P1 name to game object
+  game.players.p2.name = p2Name.value; // Adding P2 name to game object
   playerInfo.style.display = "flex";
   currentPlayerInfo.style.display = "flex";
   gameContainer.style.display = "flex";
   form.style.display = "none";
-  playerOne.innerText = p1Name;
+  playerOne.innerText = `Name: ${p1Name.value}`;
+  playerTwo.innerText = `Name: ${p2Name.value}`;
+  currentPlayerName.innerText = name;
+});
+
+// Listening for click on reset button and then clearning the background and count
+document.querySelector(".reset-game").addEventListener("click", e => {
+  let allSlots = document.querySelectorAll(".slot");
+  console.log("reset button clicked");
+  allSlots.style.backgroundColor = "none";
+  allSlots.style.backgroundImage = "none";
 });
 
 // Event listeners for the Player 1 disc buttons
@@ -187,16 +200,35 @@ document.querySelector(".p2-neptune").addEventListener("click", e => {
 
 /*----- functions -----*/
 
+// Creates current player which aways stats with P1
 const createCurrentPlayer = () => {
+  let name = game.currentPlayer.name;
   game.currentPlayer = game.players.p1;
+  currentPlayerName.innerText = name;
+};
+
+// Updates win count for current player
+const updateWins = () => {
+  let wins1 = document.querySelector(".win-grab-1");
+  let wins2 = document.querySelector(".win-grab-2");
+  wins1.innerText = `Wins: ${game.players.p1.wins}`;
+  wins2.innerText = `Wins: ${game.players.p2.wins}`;
+};
+
+const declareWinner = () => {
+  currentPlayerHeader.innerText = "Winner!";
 };
 
 // Changing players
 const changePlayer = () => {
   if (game.currentPlayer === game.players.p1) {
+    let name = game.currentPlayer.name;
     game.currentPlayer = game.players.p2;
+    currentPlayerName.innerText = name;
   } else if (game.currentPlayer === game.players.p2) {
+    let name = game.currentPlayer.name;
     game.currentPlayer = game.players.p1;
+    currentPlayerName.innerText = name;
   }
 };
 
@@ -214,6 +246,7 @@ const checkVertical = () => {
       if (count >= 4) {
         count = 0;
         game.currentPlayer.wins += 1;
+        declareWinner();
         console.log(`${game.currentPlayer.name} wins!`);
       }
     }
@@ -236,6 +269,7 @@ const checkHorizontal = () => {
       if (count === 4) {
         count = 0;
         game.currentPlayer.wins += 1;
+        declareWinner();
         console.log(`${game.currentPlayer.name} wins!`);
       }
     }
@@ -290,6 +324,7 @@ const checkDiagonal = () => {
           diagonal = 1;
           count = 0;
           game.currentPlayer.wins += 1;
+          declareWinner();
           console.log(`${game.currentPlayer.name} wins!`);
           break; // breaks out of inner for loop
         }
@@ -311,11 +346,11 @@ for (let i = 0; i < columns.length; i++) {
         currentSlots[j].style.backgroundColor = game.currentPlayer.color;
         currentSlots[j].style.backgroundImage =
           "url(" + game.currentPlayer.url + ")";
-
         checkVertical();
         checkHorizontal();
         checkDiagonal();
         changePlayer();
+        updateWins();
         return;
       }
     }
