@@ -109,18 +109,18 @@ let currentPlayerHeader = document.querySelector(".current-player-header");
 // game board
 // This will also reset the player names, wins, and discs
 
-// document.querySelector(".go-home").addEventListener("click", e => {
-//   form.style.display = "flex";
-//   playerInfo.style.display = "none";
-//   currentPlayerInfo.style.display = "none";
-//   gameContainer.style.display = "none";
-//   game.players.p1.name = "";
-//   game.players.p1.wins = 0;
-//   game.players.p1.disc = "";
-//   game.players.p2.name = "";
-//   game.players.p2.wins = 0;
-//   game.players.p2.disc = "";
-// });
+document.querySelector(".go-home").addEventListener("click", e => {
+  form.style.display = "flex";
+  playerInfo.style.display = "none";
+  currentPlayerInfo.style.display = "none";
+  gameContainer.style.display = "none";
+  game.players.p1.name = "";
+  game.players.p1.wins = 0;
+  game.players.p1.disc = "";
+  game.players.p2.name = "";
+  game.players.p2.wins = 0;
+  game.players.p2.disc = "";
+});
 
 // Listening for click on play and then inputting names into the player object
 document.querySelector(".play-btn").addEventListener("click", e => {
@@ -142,8 +142,8 @@ document.querySelector(".play-btn").addEventListener("click", e => {
 document.querySelector(".reset-game").addEventListener("click", e => {
   let allSlots = document.querySelectorAll(".slot");
   console.log("reset button clicked");
-  allSlots.style.backgroundColor = "none";
-  allSlots.style.backgroundImage = "none";
+  allSlots.style.backgroundColor = "";
+  allSlots.style.backgroundImage = "";
 });
 
 // Event listeners for the Player 1 disc buttons
@@ -217,6 +217,8 @@ const updateWins = () => {
 
 const declareWinner = () => {
   currentPlayerHeader.innerText = "Winner!";
+  columns.style.opacity = "0.5";
+  document.removeEventListener("click", columnCheck());
 };
 
 // Changing players
@@ -338,23 +340,26 @@ const checkDiagonal = () => {
 
 // For loop that checks if the bottom slot is filled or not based on color
 // then calls the checks.
-for (let i = 0; i < columns.length; i++) {
-  columns[i].addEventListener("click", e => {
-    let currentSlots = columns[i].children;
-    for (let j = currentSlots.length - 1; j >= 0; j--) {
-      if (currentSlots[j].style.backgroundColor === "") {
-        currentSlots[j].style.backgroundColor = game.currentPlayer.color;
-        currentSlots[j].style.backgroundImage =
-          "url(" + game.currentPlayer.url + ")";
-        checkVertical();
-        checkHorizontal();
-        checkDiagonal();
-        changePlayer();
-        updateWins();
-        return;
+const columnCheck = () => {
+  for (let i = 0; i < columns.length; i++) {
+    columns[i].addEventListener("click", e => {
+      let currentSlots = columns[i].children;
+      for (let j = currentSlots.length - 1; j >= 0; j--) {
+        if (currentSlots[j].style.backgroundColor === "") {
+          currentSlots[j].style.backgroundColor = game.currentPlayer.color;
+          currentSlots[j].style.backgroundImage =
+            "url(" + game.currentPlayer.url + ")";
+          checkVertical();
+          checkHorizontal();
+          checkDiagonal();
+          changePlayer();
+          updateWins();
+          return;
+        }
       }
-    }
-  });
-}
+    });
+  }
+};
 
 createCurrentPlayer();
+columnCheck();
