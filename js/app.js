@@ -70,63 +70,6 @@
 const columns = document.querySelectorAll(".column");
 const slots = document.querySelectorAll(".slot");
 
-// Column 1 Slots
-const col1Slot1 = document.querySelector(".slot-1-1");
-const col1Slot2 = document.querySelector(".slot-1-2");
-const col1Slot3 = document.querySelector(".slot-1-3");
-const col1Slot4 = document.querySelector(".slot-1-4");
-const col1Slot5 = document.querySelector(".slot-1-5");
-const col1Slot6 = document.querySelector(".slot-1-6");
-const col1Slot7 = document.querySelector(".slot-1-7");
-// Column 2 Slots
-const col2Slot1 = document.querySelector(".slot-2-1");
-const col2Slot2 = document.querySelector(".slot-2-2");
-const col2Slot3 = document.querySelector(".slot-2-3");
-const col2Slot4 = document.querySelector(".slot-2-4");
-const col2Slot5 = document.querySelector(".slot-2-5");
-const col2Slot6 = document.querySelector(".slot-2-6");
-const col2Slot7 = document.querySelector(".slot-2-7");
-// Column 3 Slots
-const col3Slot1 = document.querySelector(".slot-3-1");
-const col3Slot2 = document.querySelector(".slot-3-2");
-const col3Slot3 = document.querySelector(".slot-3-3");
-const col3Slot4 = document.querySelector(".slot-3-4");
-const col3Slot5 = document.querySelector(".slot-3-5");
-const col3Slot6 = document.querySelector(".slot-3-6");
-const col3Slot7 = document.querySelector(".slot-3-7");
-// Column 4 Slots
-const col4Slot1 = document.querySelector(".slot-4-1");
-const col4Slot2 = document.querySelector(".slot-4-2");
-const col4Slot3 = document.querySelector(".slot-4-3");
-const col4Slot4 = document.querySelector(".slot-4-4");
-const col4Slot5 = document.querySelector(".slot-4-5");
-const col4Slot6 = document.querySelector(".slot-4-6");
-const col4Slot7 = document.querySelector(".slot-4-7");
-// Column 5 Slots
-const col5Slot1 = document.querySelector(".slot-5-1");
-const col5Slot2 = document.querySelector(".slot-5-2");
-const col5Slot3 = document.querySelector(".slot-5-3");
-const col5Slot4 = document.querySelector(".slot-5-4");
-const col5Slot5 = document.querySelector(".slot-5-5");
-const col5Slot6 = document.querySelector(".slot-5-6");
-const col5Slot7 = document.querySelector(".slot-5-7");
-// Column 6 Slots
-const col6Slot1 = document.querySelector(".slot-6-1");
-const col6Slot2 = document.querySelector(".slot-6-2");
-const col6Slot3 = document.querySelector(".slot-6-3");
-const col6Slot4 = document.querySelector(".slot-6-4");
-const col6Slot5 = document.querySelector(".slot-6-5");
-const col6Slot6 = document.querySelector(".slot-6-6");
-const col6Slot7 = document.querySelector(".slot-6-7");
-// Column 7 Slots
-const col7Slot1 = document.querySelector(".slot-7-1");
-const col7Slot2 = document.querySelector(".slot-7-2");
-const col7Slot3 = document.querySelector(".slot-7-3");
-const col7Slot4 = document.querySelector(".slot-7-4");
-const col7Slot5 = document.querySelector(".slot-7-5");
-const col7Slot6 = document.querySelector(".slot-7-6");
-const col7Slot7 = document.querySelector(".slot-7-7");
-
 // Game Object
 const game = {
   currentPlayer: {},
@@ -155,20 +98,58 @@ document.querySelector(".play-btn").addEventListener("click", e => {
   event.preventDefault();
   let p1Name = document.querySelector(".p1-name").value;
   let p2Name = document.querySelector(".p2-name").value;
-  game.players.p1.name = p1Name;
-  game.players.p2.name = p2Name;
+  let playerInfo = document.querySelector(".player-info");
+  let currentPlayerInfo = document.querySelector(".current-player");
+  let gameContainer = document.querySelector(".game-container");
+  game.players.p1.name = p1Name; // Adding P1 name to game object
+  game.players.p2.name = p2Name; // Adding P2 name to game object
+  playerInfo.style.display = "flex";
+  currentPlayerInfo.style.display = "flex";
+  gameContainer.style.display = "flex";
 });
 
-// Event listeners for the disc buttons
+// Event listeners for the Player 1 disc buttons
 document.querySelector(".p1-earth").addEventListener("click", e => {
   let p1Earth = document.querySelector(".p1-earth");
   p1Earth.style.border = "1px solid white";
   game.players.p1.disc = "Earth";
 });
 document.querySelector(".p1-moon").addEventListener("click", e => {
-  let p1Earth = document.querySelector(".p1-moon");
-  p1Earth.style.border = "1px solid white";
+  let p1Moon = document.querySelector(".p1-moon");
+  p1Moon.style.border = "1px solid white";
   game.players.p1.disc = "Moon";
+});
+document.querySelector(".p1-mars").addEventListener("click", e => {
+  let p1Mars = document.querySelector(".p1-mars");
+  p1Mars.style.border = "1px solid white";
+  game.players.p1.disc = "Mars";
+});
+document.querySelector(".p1-neptune").addEventListener("click", e => {
+  let p1Neptune = document.querySelector(".p1-neptune");
+  p1Neptune.style.border = "1px solid white";
+  game.players.p1.disc = "Neptune";
+});
+
+// Event listeners for the Player 2 disc buttons
+document.querySelector(".p2-earth").addEventListener("click", e => {
+  let p2Earth = document.querySelector(".p2-earth");
+  p2Earth.style.border = "1px solid white";
+  game.players.p2.disc = "Earth";
+});
+document.querySelector(".p2-moon").addEventListener("click", e => {
+  let p2Moon = document.querySelector(".p2-moon");
+  p2Moon.style.border = "1px solid white";
+  game.players.p2.disc = "Moon";
+});
+document.querySelector(".p2-mars").addEventListener("click", e => {
+  let p2Mars = document.querySelector(".p2-mars");
+  p2Mars.style.border = "1px solid white";
+  game.players.p2.disc = "Mars";
+});
+document.querySelector(".p2-neptune").addEventListener("click", e => {
+  let p2Neptune = document.querySelector(".p2-neptune");
+  p2Neptune.style.border = "1px solid white";
+  game.players.p2.disc = "Neptune";
 });
 
 /*----- functions -----*/
