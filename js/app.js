@@ -141,9 +141,14 @@ document.querySelector(".play-btn").addEventListener("click", e => {
 // Listening for click on reset button and then clearning the background and count
 document.querySelector(".reset-game").addEventListener("click", e => {
   let allSlots = document.querySelectorAll(".slot");
-  console.log("reset button clicked");
-  allSlots.style.backgroundColor = "";
-  allSlots.style.backgroundImage = "";
+  for (let i = 0; i < allSlots.length; i++) {
+    console.log("hitting loop");
+    allSlots[i].style.backgroundColor = "";
+    allSlots[i].style.backgroundImage = "";
+  }
+  // console.log("reset button clicked");
+  // allSlots.style.backgroundColor = "";
+  // allSlots.style.backgroundImage = "";
 });
 
 // Event listeners for the Player 1 disc buttons
@@ -218,7 +223,6 @@ const updateWins = () => {
 const declareWinner = () => {
   currentPlayerHeader.innerText = "Winner!";
   columns.style.opacity = "0.5";
-  document.removeEventListener("click", columnCheck());
 };
 
 // Changing players
