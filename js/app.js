@@ -213,6 +213,7 @@ const checkVertical = () => {
       }
       if (count >= 4) {
         count = 0;
+        game.currentPlayer.wins += 1;
         console.log(`${game.currentPlayer.name} wins!`);
       }
     }
@@ -233,6 +234,8 @@ const checkHorizontal = () => {
         count = 0;
       }
       if (count === 4) {
+        count = 0;
+        game.currentPlayer.wins += 1;
         console.log(`${game.currentPlayer.name} wins!`);
       }
     }
@@ -285,6 +288,7 @@ const checkDiagonal = () => {
 
         if (count == 4) {
           diagonal = 1;
+          count = 0;
           game.currentPlayer.wins += 1;
           console.log(`${game.currentPlayer.name} wins!`);
           break; // breaks out of inner for loop
