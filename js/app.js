@@ -75,6 +75,8 @@ let playerInfo = document.querySelector(".player-info");
 let currentPlayerInfo = document.querySelector(".current-player");
 let gameContainer = document.querySelector(".game-container");
 let form = document.querySelector(".form");
+let playerOne = document.querySelector(".h3-grab-1");
+let playerTwo = document.querySelector(".h3-grab-2");
 
 // Game Object
 const game = {
@@ -133,7 +135,7 @@ document.querySelector(".p1-neptune").addEventListener("click", e => {
   let p1Neptune = document.querySelector(".p1-neptune");
   p1Neptune.style.border = "1px solid white";
   game.players.p1.disc = "Neptune";
-  game.players.p1.disc = "./img/neptune.png";
+  game.players.p1.url = "./img/neptune.png";
 });
 
 // Event listeners for the Player 2 disc buttons
@@ -296,7 +298,8 @@ for (let i = 0; i < columns.length; i++) {
   columns[i].addEventListener("click", e => {
     let currentSlots = columns[i].children;
     for (let j = currentSlots.length - 1; j >= 0; j--) {
-      if (currentSlots[j].style.backgroundImage === "") {
+      if (currentSlots[j].style.backgroundColor === "") {
+        currentSlots[j].style.backgroundColor = game.currentPlayer.color;
         currentSlots[j].style.backgroundImage =
           "url(" + game.currentPlayer.url + ")";
 
