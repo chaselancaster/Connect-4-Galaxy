@@ -136,9 +136,9 @@ document.querySelector(".play-btn").addEventListener("click", e => {
   form.style.display = "none";
   playerOne.innerText = `Name: ${p1Name.value}`;
   playerTwo.innerText = `Name: ${p2Name.value}`;
-  currentPlayerName.innerText = name;
   game.players.p1.wins = 0;
   game.players.p2.wins = 0;
+  currentPlayerName.innerText = game.currentPlayer.name;
 });
 
 // Listening for click on reset button and then clearning the background and count
@@ -237,14 +237,28 @@ const declareWinner = () => {
   game.currentPlayer = "null";
 };
 
+const changeP1Name = () => {
+  if ((currentPlayerName.innerText = game.players.p1.name)) {
+    currentPlayerName.innerText = game.players.p2.name;
+  } else {
+    currentPlayerName.innerText = game.players.p1.name;
+  }
+};
+
+const changeP2Name = () => {
+  if ((currentPlayerName.innerText = game.players.p2.name)) {
+    currentPlayerName.innerText = game.players.p1.name;
+  }
+};
+
 // Changing players
 const changePlayer = () => {
   if (game.currentPlayer === game.players.p1) {
-    let name = game.currentPlayer.name;
+    let name = game.players.p2.name;
     game.currentPlayer = game.players.p2;
     currentPlayerName.innerText = name;
   } else if (game.currentPlayer === game.players.p2) {
-    let name = game.currentPlayer.name;
+    let name = game.players.p1.name;
     game.currentPlayer = game.players.p1;
     currentPlayerName.innerText = name;
   }
